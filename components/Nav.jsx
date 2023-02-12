@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Flex, useDisclosure /* , Progress */ } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import CreatePostModal from './CreatePostModal';
+import Link from 'next/link';
 
 const Nav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -15,21 +16,23 @@ const Nav = () => {
         maxW="900px"
         m="auto"
         p={8}>
-        <Box
-          as="button"
-          bg="black"
-          color="white"
-          width="120px"
-          borderRadius="md"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          height="50px"
-          fontSize="2xl"
-          fontWeight="700"
-          cursor="pointer">
-          NucPost
-        </Box>
+        <Link href="/">
+          <Box
+            as="button"
+            bg="black"
+            color="white"
+            width="120px"
+            borderRadius="md"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            height="50px"
+            fontSize="2xl"
+            fontWeight="700"
+            cursor="pointer">
+            NucPost
+          </Box>
+        </Link>
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
           <Box
             bgGradient="linear(to-l, #7928CA, #FF0080)"

@@ -18,7 +18,7 @@ const Post = ({ post }) => {
             {post.title}
           </Text>
           <Text>{post.description}</Text>
-          <Link href={`posts/${post._id}`}>
+          <Link href={`post/${post._id}`}>
             <Button
               bg="#7928CA"
               mt="10"

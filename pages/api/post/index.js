@@ -15,7 +15,7 @@ const handle = nc()
   .post(async (req, res) => {
     const post = await createPost(req.db, {
       title: req.body.title,
-      desciption: req.body.description,
+      description: req.body.description,
     });
     res.send({ data: post });
   });

@@ -20,7 +20,7 @@ export default function Home({ posts }) {
           m="10 auto"
           align="center">
           {posts?.map((post) => (
-            <Post key={post.id} post={post} />
+            <Post key={post._id} post={post} />
           ))}
         </Flex>
       </Box>

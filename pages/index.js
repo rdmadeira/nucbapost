@@ -1,8 +1,11 @@
 import Head from 'next/head';
 import { Box, Flex } from '@chakra-ui/react';
 import Post from '../components/Post';
+import { connectDB } from '../db/connection';
+import { getPosts } from '../db/post_utils';
 
-export default function Home() {
+export default function Home({ posts }) {
+  console.log(posts);
   return (
     <>
       <Head>
@@ -16,9 +19,24 @@ export default function Home() {
           flexDirection="column"
           m="10 auto"
           align="center">
-          <Post />
+          {posts?.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
         </Flex>
       </Box>
     </>
   );
+}
+
+// getStaticProps funciona como un servidor, que colecta de la base de datos realtime los datos. O se puede acceder los datos por fetch al cluster de mongodb.
+export async function getStaticProps() {
+  // En el build de la aplicacion, Nextjs se encarga de sacar esta función del front-end, con los import.
+  const { db } = await connectDB();
+  const posts = await getPosts(db);
+
+  return {
+    props: {
+      posts,
+    },
+  };
 }

@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { ChakraProvider, CSSReset } from '@chakra-ui/react';
 import { Global, css } from '@emotion/react'; // es el styled component de chakra-ui
 import theme from '../styles/theme';
@@ -5,6 +6,8 @@ import Nav from '../components/Nav.jsx';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import Router from 'next/router';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -31,13 +34,22 @@ const GlobalStyle = ({ children }) => {
 };
 
 export default function MyApp({ Component, pageProps }) {
+  const queryClientRef = useRef();
+
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  }
+
   return (
     <>
-      <ChakraProvider theme={theme}>
-        <GlobalStyle />
-        <Nav />
-        <Component {...pageProps} />
-      </ChakraProvider>
+      <QueryClientProvider client={queryClientRef.current}>
+        <ChakraProvider theme={theme}>
+          <GlobalStyle />
+          <Nav />
+          <Component {...pageProps} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </ChakraProvider>
+      </QueryClientProvider>
     </>
   );
 }

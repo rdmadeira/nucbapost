@@ -1,7 +1,6 @@
 import { Box, Text, Button } from '@chakra-ui/react';
 
 const Post = ({ post }) => {
-  console.log(post);
   return (
     <Box
       bg="gray.100"
@@ -10,7 +9,7 @@ const Post = ({ post }) => {
       display="flex"
       justifyContent="center">
       <Box
-        w={'80%'}
+        w="80%"
         display="flex"
         justifyContent="center"
         borderWidth="1px"

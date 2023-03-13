@@ -3,9 +3,15 @@ import { Box, Flex } from '@chakra-ui/react';
 import Post from '../components/Post';
 import { connectDB } from '../db/connection';
 import { getPosts } from '../db/post_utils';
+import { useQuery } from 'react-query';
 
 export default function Home({ posts }) {
-  console.log(posts);
+  const { data, isError, isLoading } = useQuery(
+    'posts',
+    () => fetch('http://localhost:3000/api/post').then((data) => data.json()),
+    { initialData: { data: posts } }
+  );
+
   return (
     <>
       <Head>
@@ -18,8 +24,8 @@ export default function Home({ posts }) {
           justifyContent="flex-start"
           flexDirection="column"
           m="10 auto"
-          align="center">
-          {posts?.map((post) => (
+          alignItems="center">
+          {data?.data?.map((post) => (
             <Post key={post._id} post={post} />
           ))}
         </Flex>

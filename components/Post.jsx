@@ -5,9 +5,11 @@ import Link from 'next/link';
 
 const Post = ({ post }) => {
   return (
-    <motion.div whileHover={{ scale: 1.02, translateY: '-5px' }}>
+    <motion.div
+      whileHover={{ scale: 1.02, translateY: '-5px' }}
+      style={{ display: 'flex', justifyContent: 'center' }}>
       <Box
-        w={'300px'}
+        w="75%"
         borderWidth="1px"
         borderRight={'lg'}
         overflow="hidden"

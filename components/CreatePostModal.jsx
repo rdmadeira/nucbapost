@@ -11,27 +11,44 @@ import {
   FormLabel,
   Input,
   Button,
+  useToast,
 } from '@chakra-ui/react';
-
+import { useMutation, useQueryClient } from 'react-query'; // useQueryClient trae un metodo invalidateQuery, que invalida el query y forza el re-fetch. Vamos a usar eso en el caso de success.
 import React from 'react';
 
 const CreatePostModal = ({ isOpen, onClose }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  console.log(description);
+  const queryClient = useQueryClient();
+  const toast = useToast();
 
-  const handleSubmit = async () => {
-    try {
-      await fetch('http://localhost:3000/api/post', {
+  const createPost = useMutation(
+    (post) => {
+      return fetch('http://localhost:3000/api/post', {
         method: 'POST',
-        body: JSON.stringify({ title, description }),
+        body: JSON.stringify(post),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-    } catch (error) {
-      console.log(error);
+    },
+    {
+      onSuccess: () => {
+        onClose();
+        queryClient.invalidateQueries('posts');
+        toast({
+          title: 'Post creado ',
+          status: 'success',
+          duration: 1000,
+          isClosable: true,
+          position: 'top',
+        });
+      },
     }
+  );
+
+  const handleSubmit = () => {
+    createPost.mutate({ title, description });
   };
 
   return (

@@ -31,7 +31,9 @@ const Post = ({ post }) => {
 // Funcion de nextjs para acceder a los paths, que en el bilding de la app, no existen los paths. Se puede acceder por fetch a mongodb, o sacar de la base de datos db
 
 export async function getStaticPaths() {
-  const result = await fetch('http://localhost:3000/api/post'); // por defecto el fetch es GET
+  const result = await fetch(
+    `${process.env.PROTOCOL}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/post`
+  ); // por defecto el fetch es GET
   const { data } = await result.json();
 
   const paths =
@@ -46,7 +48,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // params es la prop del contexto (context.params)
-  const res = await fetch(`http://localhost:3000/api/post/${params.id}`);
+  const res = await fetch(
+    `${process.env.PROTOCOL}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/post/${params.id}`
+  );
   const { data } = await res.json();
 
   return {

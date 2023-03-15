@@ -1,24 +1,27 @@
 {
   "root": true,
   "extends": [
-    "eslint:recommended",
+    "plugin:@next/next/recommended",
+    "next/core-web-vitals"
+
+    /* "eslint:recommended",
     "plugin:import/errors",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "prettier",
     //"react-app",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended" */
   ],
   "plugins": ["react", "import", "jsx-a11y"],
   "rules": {
     "react/prop-types": 0,
-    "no-console": 1, // Salta warnings para los console.log no iren a producción
-    "prettier/prettier": [
+    "no-console": 1 // Salta warnings para los console.log no iren a producción
+    /* "prettier/prettier": [
       "error",
       {
         "endOfLine": "auto"
       }
-    ]
+    ] */
   },
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -35,6 +38,7 @@
   "settings": {
     "react": {
       "version": "detect"
-    }
+    },
+    "eslint.workingDirectories": ["Dir1", "Dir2"]
   }
 }

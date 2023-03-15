@@ -3,12 +3,14 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "eslint-config-next": "^13.2.4",
     "framer-motion": "^9.0.2",
     "mongodb": "^5.0.1",
     "next": "latest",
@@ -17,5 +19,15 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-query": "^3.39.3"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^13.2.4",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "2.8.4"
   }
 }

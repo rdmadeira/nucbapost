@@ -49,7 +49,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // params es la prop del contexto (context.params)
   const res = await fetch(
-    `${process.env.PROTOCOL}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/post/${params.id}`
+    `${process.env.PROTOCOL}${process.env.NEXT_PUBLIC_VERCEL_URL}/${params.id}`
   );
   const { data } = await res.json();
 

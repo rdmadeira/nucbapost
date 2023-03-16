@@ -7,9 +7,9 @@ const Post = ({ post }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.02, translateY: '-5px' }}
-      style={{ display: 'flex', justifyContent: 'center' }}>
+      style={{ display: 'flex', justifyContent: 'center', width: '75%' }}>
       <Box
-        w="75%"
+        width="100%"
         borderWidth="1px"
         borderRight={'lg'}
         overflow="hidden"

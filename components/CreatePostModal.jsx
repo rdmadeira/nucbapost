@@ -24,13 +24,16 @@ const CreatePostModal = ({ isOpen, onClose }) => {
 
   const createPost = useMutation(
     (post) => {
-      return fetch('http://localhost:3000/api/post', {
-        method: 'POST',
-        body: JSON.stringify(post),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      return fetch(
+        `${process.env.PROTOCOL}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/post`,
+        {
+          method: 'POST',
+          body: JSON.stringify(post),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
     },
     {
       onSuccess: () => {
